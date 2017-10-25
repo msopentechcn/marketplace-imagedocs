@@ -1,11 +1,11 @@
 # GitLab
 
-## Abstract
+## 描述
 GitLab 是一个利用 Ruby on Rails 开发的开源应用程序，实现一个自托管的 Git 项目仓库，可通过 Web 界面进行访问公开的或者私人项目。打开[官方文档](https://docs.gitlab.com/ce/README.html)可以查看更多信息与配置使用方法。
 
-## Introduction
+## 简介
 GitLab https://about.gitlab.com/ 是一个利用 Ruby on Rails 开发的开源应用程序，实现一个自托管的 Git 项目仓库，可通过 Web 界面进行访问公开的或者私人项目。它拥有与Github类似的功能，能够浏览源代码，管理缺陷和注释。可以管理团队对仓库的访问，它非常易于浏览提交过的版本并提供一个文件历史库。团队成员可以利用内置的简单聊天程序(Wall)进行交流。
-## Requirements
+## 硬件需求
 **CPU：** <br/>
 Gitlab对CPU的要求，我们建议您：
 - 1个内核最多支持100个用户，但是由于所有系统任务都运行在同一个核心上，所以应用程序可能会慢一些
@@ -34,26 +34,26 @@ Gitlab对CPU的要求，我们建议您：
 默认部署镜像后VM的存储磁盘容量为30G，如果后期需要更多空间，您可以附加额外的存储硬盘，并通过管理员帐号登陆Gitlab来配置Repository Storage存储位置来解决。
 
 
-## Usage
+## 用法
 Gitlab镜像的使用方法：
 1. 部署镜像后通过 ssh 登录：<br/>
 
 ``` Bash
 sudo vim /etc/hostname，更新为所部署虚拟机的真实 FQDN（如mygitlab.chinanorth.cloudapp.chinacloudapi.cn）
-sudo vim /etc/gitlab/gitlab.rb，更新 external_url 为外部域名，如 'http://mygitlab.norch.chinacloudapp.cn' 
+sudo vim /etc/gitlab/gitlab.rb，更新 external_url 为外部域名，如 'http://mygitlab.chinanorth.cloudapp.chinacloudapi.cn' 
 ```
 
-修改完成后，执行下面命令启动Gitlab。
+修改完成后，执行下面命令重启Gitlab。
 
 ``` Bash
 sudo gitlab-ctl reconfigure
 sudo gitlab-ctl restart
 ```
 
-2. 添加8080端口到您的` Azure 网络安全组`的入站终结点中，您可以参考文章[如何在 Azure 中的 Linux 经典虚拟机上设置终结点](https://docs.azure.cn/zh-cn/virtual-machines/linux/classic/setup-endpoints)。<br/>
+2. 添加80端口到您的` Azure 网络安全组`的入站终结点中，您可以参考文章[如何在 Azure 中的 Linux 经典虚拟机上设置终结点](https://docs.azure.cn/zh-cn/virtual-machines/linux/classic/setup-endpoints)。<br/>
 3. 访问 http://{真实FQDN}/ 以登录和使用 Git 服务器。首次访问时请输入任意合理的密码以初始化管理员账号。默认用户名为 root，输入之前设定的密码登录后可修改用户名。
 
-## Metadata
+## 信息
 
 |Key|Value|
 |---|-----|
@@ -68,7 +68,7 @@ sudo gitlab-ctl restart
 |标签|gitlab,collaboration,git,scm,git-scm,open-source|
 |端口|80, 22|
 
-## Installation
+## 安装步骤
 
 ##### 原始镜像：
     在Azure中搜索镜像Centos7.3 Base（Centos官方7.3版）创建Centos7.3作为基础镜像。
@@ -88,3 +88,12 @@ sudo gitlab-ctl restart
     2、测试Gitlab邮箱发送功能可以使用下列命令：
 	（1） 命令：gitlab-rails console 进入命令行。
 	（2） 执行：Notify.test_email('xingzhu.song@yungoal.com','Message Subject','Message Body').deliver_now
+
+
+## 与其它镜像的区别
+
+##### Bitnami部署中的特点
+
+    1、国际版中，使用Bitnami部署GitLab之后，无需要进入修改/etc/gitlab/gitlab.rb文件中的external_url值，因为Bitnami使用了自己的角本(角本位置/opt/bitnami/gitlab中)来配置主机名和external_url值，因为Bitnami使用的是镜像部署方式，因此它配置external_url时，使用的是ip的方式，这一点不是很友好。
+    2、当前我们是使用用户手动配置external_url的方式来实现。
+   
