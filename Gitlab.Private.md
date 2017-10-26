@@ -58,7 +58,7 @@ sudo gitlab-ctl restart
 |Key|Value|
 |---|-----|
 |镜像名称|GitLab-CE-10.0.3 (Centos7.3 Base)|
-|镜像位置||
+|镜像位置|https://community49d5320c5aeec4c.blob.core.chinacloudapi.cn/sxz-vhds/Centos7.3_Gitlab.CE.10.0.3-os-2017-10-12-1AF5EF1C.vhd|
 |发布链接||
 |上传日期|2017-10-19 7:00:00 UTC|
 |版本|Community Edition 10.0.3|
@@ -94,6 +94,6 @@ sudo gitlab-ctl restart
 
 ##### Bitnami部署中的特点
 
-    1、国际版中，使用Bitnami部署GitLab之后，无需要进入修改/etc/gitlab/gitlab.rb文件中的external_url值，因为Bitnami使用了自己的角本(角本位置/opt/bitnami/gitlab中)来配置主机名和external_url值，因为Bitnami使用的是镜像部署方式，因此它配置external_url时，使用的是ip的方式，这一点不是很友好。
+    1、国际版中，使用Bitnami部署GitLab之后，无需要进入修改/etc/gitlab/gitlab.rb文件中的external_url值，因为Bitnami使用了自己的角本(角本位置/opt/bitnami/gitlab中)来配置主机名和external_url值，因为Bitnami使用的是镜像部署方式，因此它配置external_url时，使用的是ip的方式，这一点不是很友好。另外，Bitnami对Gitlab的官方文档地址：https://docs.bitnami.com/azure/apps/gitlab/
     2、当前我们是使用用户手动配置external_url的方式来实现。
    
